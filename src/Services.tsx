@@ -1,21 +1,23 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
 type Service = {
-  id: number;
-  title: string;
-  description: string;
-  price: string;
-};
+  id: number
+  title: string
+  description: string
+  price: string
+}
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 export function Services() {
-  const [services, setServices] = useState<Service[]>([]);
+  const [services, setServices] = useState<Service[]>([])
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/services/")
+    fetch(`${API_URL}/api/services/`)
       .then(res => res.json())
-      .then(data => setServices(data));
-  }, []);
+      .then(data => setServices(data))
+  }, [])
 
   return (
     <div>
@@ -27,5 +29,5 @@ export function Services() {
         </div>
       ))}
     </div>
-  );
+  )
 }
